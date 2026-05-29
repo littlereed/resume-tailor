@@ -17,25 +17,18 @@ The application analyzes resumes against job descriptions, optimizes wording und
 
 ## 🧠 Workflow
 
-```
+```text
 Extract Keywords
        ↓
 Rewrite Resume
        ↓
- Score Resume
+Score Resume
        ↓
-Score < 85 && Retry < 3 ?
-       │
- ┌─────┴─────┐
- │           │
-Yes         No
- │           │
- ↓           ↓
-Retry      Verify
- │           │
- └─────┬─────┘
+Retry if Score < 85 (max 3 rounds)
        ↓
-      Done
+Verify (Optional)
+       ↓
+Done
 ```
 
 

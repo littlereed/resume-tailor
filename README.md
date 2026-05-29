@@ -104,7 +104,7 @@ Screenshots are included to demonstrate the main UI and application flow.
 
 Live Demo:
 
-https://your-demo-url.vercel.app
+https://resume-tailor-theta-three.vercel.app/
 
 ## ⚠️ Known Issues
 

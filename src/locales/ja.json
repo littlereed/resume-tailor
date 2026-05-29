@@ -1,6 +1,6 @@
 {
   "title": "履歴書最適化エージェント",
-  "subtitle": "LangGraph 自己反省ループ · 書き直し → 採点 → 自動再試行",
+  "subtitle": "信頼できる AI 履歴書最適化 · 求人特化の書き直し、自動採点、経歴の捏造なし",
   "jdLabel": "応募先の求人情報(JD)",
   "jdPlaceholder": "応募先の求人情報を貼り付けてください...",
   "resumeLabel": "あなたの履歴書(個人情報を含むファイルは避けてください)",
@@ -13,7 +13,7 @@
   "hint": "「最適化する」をクリックして、各ステップを観察してください",
   "reasoning": "推論中...",
   "rewriteNode": "✍️ 書き直し",
-  "scorePercentage": "📊 マッチ度評価",
+  "scoreNode": "📊 マッチ度評価",
   "roundLabel": "{n}回目",
   "finalScore": "最終マッチ度",
   "resultTitle": "結果",
@@ -23,5 +23,22 @@
   "copied": "✓ コピー済み",
   "jobDescription": "履歴書と求人情報の両方を入力してください",
   "uploadFail": "アップロード失敗",
-  "requestFail": "リクエスト失敗"
+  "requestFail": "リクエスト失敗",
+  "err_quota_degraded": "⚠️ AI 利用枠超過のため、キーワードベースの基本分析結果です",
+  "verifyNode": "🛡️ 真実性チェック",
+  "verifyPassed": "✓ 捏造は検出されませんでした",
+  "verifyWarning": "⚠️ 捏造の可能性を検出:",
+  "keywordMatch": "キーワード網羅率",
+  "extractNode": "🔍 キーワード抽出",
+  "missingLabel": "✗ 履歴書に未掲載",
+  "matchRateLabel": "キーワード網羅率",
+  "lowMatchHint": "💡 マッチ度が低い場合、JD で求められるスキルが履歴書に不足している可能性があります。このツールは経歴を捏造しません——数字は実際のギャップを反映しています。関連する学習やプロジェクトで補強することをお勧めします。",
+  "improvementSummary": "✨ AI は既存の事実に基づき、表現・動詞の強度・要点の見せ方を改善しました(新たな経歴は捏造していません)",
+  "improvementDetails": "改善した観点",
+  "improvementMeasures": [
+    "表現の専門化",
+    "動詞の強化",
+    "JD 関連の既存経験を強調",
+    "構成と重点の調整"
+  ]
 }

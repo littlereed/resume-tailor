@@ -11,7 +11,8 @@ export const LOCALE_NAMES: Record<Locale, string> = {
 export const DEFAULT_LOCALE: Locale = "zh"
 
 // 翻译内容的类型(以 zh 为基准)
-export type Messages = Record<string, string>
+// 改成支持数组
+export type Messages = Record<string, string | string[]>
 
 // 动态按需加载:用户切到哪个语言才加载哪个文件
 export async function loadMessages(locale: Locale): Promise<Messages> {
@@ -23,3 +24,4 @@ export async function loadMessages(locale: Locale): Promise<Messages> {
 export function interpolate(template: string, vars: Record<string, string | number>): string {
   return template.replace(/\{(\w+)\}/g, (_, key) => String(vars[key] ?? `{${key}}`))
 }
+

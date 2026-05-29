@@ -1,6 +1,6 @@
 {
   "title": "Resume Tailor Agent",
-  "subtitle": "LangGraph self-reflection loop · Rewrite → Score → Auto-retry",
+  "subtitle": "Trustworthy AI resume tailor · Job-targeted rewriting, auto-scoring, no fabrication",
   "jdLabel": "Target Job Description",
   "jdPlaceholder": "Paste the target job description...",
   "resumeLabel": "Your Resume (avoid uploading files with real private info)",
@@ -13,7 +13,7 @@
   "hint": "Click 'Optimize' to watch the agent reason step by step",
   "reasoning": "Reasoning...",
   "rewriteNode": "✍️ Rewrite",
-  "scorePercentage": "📊 Score Match",
+  "scoreNode": "📊 Score Match",
   "roundLabel": "Round {n}",
   "finalScore": "Final Match",
   "resultTitle": "Result",
@@ -23,5 +23,22 @@
   "copied": "✓ Copied",
   "jobDescription": "Please fill in both resume and JD",
   "uploadFail": "Upload failed",
-  "requestFail": "Request failed"
+  "requestFail": "Request failed",
+  "err_quota_degraded": "⚠️ AI quota exhausted, showing basic keyword-based analysis",
+  "verifyNode": "🛡️ Authenticity Check",
+  "verifyPassed": "✓ No fabrication detected",
+  "verifyWarning": "⚠️ Possible fabrication detected:",
+  "keywordMatch": "Keyword Coverage",
+  "extractNode": "🔍 Extract Keywords",
+  "missingLabel": "✗ Not covered in resume",
+  "matchRateLabel": "Keyword Coverage",
+  "lowMatchHint": "💡 Low match may indicate your resume lacks some skills from the JD. This tool does not fabricate experiences — the score reflects the real gap. You can address it by adding relevant learning or projects.",
+  "improvementSummary": "✨ AI has refined wording, verb strength, and emphasis based on existing facts — no fabricated experiences",
+  "improvementDetails": "Improvements",
+  "improvementMeasures": [
+    "Professional wording",
+    "Stronger action verbs",
+    "Highlighting JD-relevant experience",
+    "Structural emphasis"
+  ]
 }

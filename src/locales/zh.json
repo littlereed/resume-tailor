@@ -1,6 +1,6 @@
 {
   "title": "简历优化 Agent",
-  "subtitle": "基于 LangGraph 的自反思循环 · 改写 → 评分 → 不达标自动重写",
+  "subtitle": "真实可信的 AI 简历优化助手 · 针对岗位改写、自动评分、不编造经历",
   "jdLabel": "目标岗位 JD",
   "jdPlaceholder": "粘贴目标岗位的职位描述...",
   "resumeLabel": "你的简历(请勿上传含真实隐私信息的文件)",
@@ -13,8 +13,8 @@
   "hint": "点击「开始优化」,实时观察 Agent 的每一步推理",
   "reasoning": "推理中...",
   "rewriteNode": "✍️ 改写简历",
-  "scorePercentage": "📊 评估匹配度",
-  "roundLabel": "第 {n} 轮",
+  "scoreNode": "📊 评估匹配度",
+  "roundLabel":"第 {n} 轮",
   "finalScore": "最终匹配度",
   "resultTitle": "优化结果",
   "originalResume": "原简历",
@@ -23,5 +23,23 @@
   "copied": "✓ 已复制",
   "jobDescription": "请填写简历和目标岗位 JD",
   "uploadFail": "上传失败",
-  "requestFail": "请求失败"
+  "requestFail": "请求失败",
+  "err_quota_degraded": "⚠️ AI 配额已用完,当前为基础分析结果(基于关键词匹配)",
+  "verifyNode": "🛡️ 真实性校验",
+  "verifyPassed": "✓ 未检测到捏造内容",
+  "verifyWarning": "⚠️ 检测到可能的捏造:",
+  "keywordMatch": "关键词覆盖率",
+  "extractNode": "🔍 提取 JD 关键词",
+  "missingLabel": "✗ 简历未覆盖",
+  "matchRateLabel": "关键词覆盖率",
+  "lowMatchHint": "💡 匹配率较低可能因为:简历缺少 JD 要求的某些技能。本工具不会编造你没有的经历——数字反映的是真实差距,你可以针对性补充相关学习或项目经历。",
+  
+  "improvementSummary": "✨ AI 已基于原有事实优化简历的措辞、动词强度与重点呈现,所有改进未编造新经历",
+  "improvementDetails": "改进维度",
+  "improvementMeasures": [
+    "措辞专业化",
+    "动词强度提升", 
+    "突出与 JD 相关的既有经历",
+    "结构与重点调整"
+  ]
 }

@@ -284,3 +284,6 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
 .compare pre::-webkit-scrollbar-thumb:hover {
   background: var(--muted);
 }
+.feedback.warning {
+  color: #fbbf24;   /* 黄色警示色 */
+}

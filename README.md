@@ -1,48 +1,108 @@
-# 简历优化 Agent (Resume Tailor)
+# 🎯 Resume Tailor Agent
 
-基于 LangGraph 的自反思 AI Agent,根据目标岗位 JD 自动优化简历:
-**改写 → 评分 → 不达标自动重写**,并实时可视化 Agent 的每一步执行过程。
+An AI-powered resume optimization platform built with Next.js, LangGraph, and LangChain.
 
-## ✨ 核心特性
+The application analyzes resumes against job descriptions, optimizes wording under strict anti-hallucination constraints, and provides objective match-rate scoring with transparent feedback.
 
-- **自反思循环**:基于 LangGraph 条件边,改写后自动评分,低于阈值则重新优化(最多 3 轮)
-- **实时可视化**:通过 SSE 流式展示 Agent 每个节点的执行状态
-- **结构化输出**:用 LangChain `withStructuredOutput` + zod 保证评分结果类型安全
-- **PDF 解析**:支持上传 PDF 简历,自动提取文本
+## ✨ Highlights
 
-## 🛠 技术栈
+* 🔄 Self-reflection loop with automatic retry (up to 3 rounds)
+* 🛡️ Anti-hallucination design that never fabricates experience
+* 🛠️ Tool calling for keyword extraction and coverage calculation
+* 📊 Dual scoring system (keyword coverage + AI evaluation)
+* ⚡ Real-time agent visualization using SSE
+* 🌍 Multilingual support (English / Japanese / Chinese)
+* 📄 PDF resume upload and parsing
+* 🪂 Graceful degradation when API quota is exhausted
 
-| 层 | 技术 |
-|---|---|
-| 框架 | Next.js 16 (App Router) |
-| 前端 | React 19 |
-| 组件层 | LangChain (PromptTemplate / withStructuredOutput / PDFLoader) |
-| 编排层 | LangGraph (StateGraph 自反思循环) |
-| 模型 | Google Gemini 2.5 Flash-Lite |
+## 🧠 Workflow
 
-## 🏗 架构
+[Extract Keywords] → [Rewrite] → [Score] ──(score < 85 && rounds < 3)──┐
+                         ↑                                              │
+                         └──────────────────────────────────────────────┘
+                                          │ (else)
+                                          ↓
+                                    [Verify] (optional)
+                                          ↓
+                                         Done
 
-\`\`\`
-用户输入(简历 + JD)
-      ↓
-[改写节点] ←──────┐
-      ↓           │ 评分 < 85 且轮数 < 3
-[评分节点] ───────┘
-      ↓ 达标
-   输出优化结果
-\`\`\`
+## 🚀 Tech Stack
 
-## 🚀 本地运行
+| Layer           | Technology               |
+| --------------- | ------------------------ |
+| Framework       | Next.js 16 (App Router)  |
+| Frontend        | React 19                 |
+| Styling         | Tailwind CSS v4          |
+| AI Framework    | LangChain                |
+| Agent Framework | LangGraph                |
+| Model           | Gemini 2.5 Flash-Lite    |
+| Streaming       | Server-Sent Events (SSE) |
+| Validation      | Zod                      |
+| Language        | TypeScript               |
 
-\`\`\`bash
-npm install --legacy-peer-deps
-# 在 .env.local 填入 GOOGLE_API_KEY
-npm run dev
-\`\`\`
+## 🔧 Technical Highlights
 
-访问 http://localhost:3000
+* LangGraph self-reflection workflow with conditional retry
+* Tool-based architecture for keyword extraction and coverage calculation
+* Type-safe LLM responses using Zod and Structured Output
+* Real-time agent visualization via Server-Sent Events (SSE)
+* Graceful degradation when API quota is exhausted
+* Multilingual support (English / Japanese / Chinese)
 
-## 📝 说明
+## 👨‍💻 Personal Contributions
 
-- Gemini 免费层有速率限制(15 RPM),项目实现了指数退避重试
-- 演示请使用脱敏简历,避免上传真实隐私信息
+This project was independently designed and implemented.
+
+Main contributions include:
+
+* LangGraph workflow design
+* Self-reflection loop implementation
+* Prompt engineering
+* LangChain tool integration
+* SSE streaming architecture
+* Anti-hallucination strategy design
+* PDF parsing workflow
+* Internationalization (i18n)
+* Frontend implementation using Next.js and Tailwind CSS
+
+## 📸 Screenshots
+
+### Resume Input
+
+![Resume Input](./screenshots/resume-input.png)
+
+### Optimization Result
+
+![Optimization Result](./screenshots/optimization-result.png)
+
+### Agent Execution Flow
+
+![Agent Flow](./screenshots/agent-flow.png)
+
+## Project Status
+
+This project is mainly for portfolio and technical demonstration purposes.
+
+The application demonstrates AI agent orchestration, resume optimization workflows, and anti-hallucination strategies using LangGraph and LangChain.
+
+Screenshots are included to demonstrate the main UI and application flow.
+
+## 🌐 Demo
+
+Live Demo:
+
+https://your-demo-url.vercel.app
+
+## ⚠️ Known Issues
+
+### Gemini Free Tier Limits
+
+The application handles API quota limitations through retry strategies and graceful degradation.
+
+### PDF Parsing Compatibility
+
+LangChain's PDFLoader currently requires:
+
+pdf-parse@1.x
+
+This dependency is pinned via package overrides.

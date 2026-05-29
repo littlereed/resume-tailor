@@ -12,7 +12,12 @@ type Step = {
   node: string
   score?: number
   feedback?: string
-  round?: number
+  round?: number,
+  keywords?: string
+  matchRate?: number
+  missing?: string[]
+  hallucinationFound?: boolean
+  hallucinationDetail?: string
 }
 
 
@@ -29,11 +34,13 @@ export default function Home() {
   const [copied, setCopied] = useState(false)
   const [locale, setLocale] = useState<Locale>(DEFAULT_LOCALE)
   
-  const { t, ready } = useTranslation(locale)
+  const { t, tArray, ready } = useTranslation(locale)
 
   const NODE_LABELS: Record<string, string> = {
+  extract: t("extractNode"),
   rewrite: t("rewriteNode"),
-  score: t("scorePercentage"),
+  fitness: t("scoreNode"),
+  verify: t("verifyNode"),
   }
 
   async function handleCopy() {
@@ -96,7 +103,17 @@ export default function Home() {
             const v = data.value
             setSteps((prev) => [
               ...prev,
-              { node: data.node, score: v.score, feedback: v.feedback, round: v.rounds },
+              {
+              node: data.node,
+              score: v.score,
+              feedback: v.feedbackCode ? t(v.feedbackCode) : v.feedback,
+              round: v.rounds,
+              keywords: v.keywords,
+              matchRate: v.matchRate,
+              missing: v.missing,
+              hallucinationFound: v.hallucinationFound,
+              hallucinationDetail: v.hallucinationDetail,
+            },
             ])
             if (data.node === "rewrite" && v.optimized) setResult(v.optimized)
             if (data.node === "score" && v.score != null) setFinalScore(v.score)
@@ -218,7 +235,31 @@ export default function Home() {
                           <span className="score-num">{s.score}%</span>
                         </div>
                       )}
-
+                      {s.node === "score" && s.matchRate != null && (
+                        <div className="mt-2">
+                        <p className="text-xs text-muted">
+                          {t("matchRateLabel")}: {s.matchRate}%
+                        </p>
+                        {s.missing && s.missing.length > 0 && (
+                          <p className="text-xs text-amber-400 mt-1">
+                          {t("missingLabel")}: {s.missing.join("、")}
+                        </p>
+                         )}
+                         </div>
+                      )}
+                      {s.node === "verify" && (
+                        <div
+                          className={`mt-2 px-3 py-2 rounded-md text-xs border ${
+                          s.hallucinationFound
+                          ? "bg-amber-400/10 text-amber-400 border-amber-400/30"
+                           : "bg-accent/10 text-accent border-accent-dim"
+                      }`}
+                      >
+                       {s.hallucinationFound
+                        ? `${t("verifyWarning")} ${s.hallucinationDetail}`
+                        : t("verifyPassed")}
+                         </div>
+                      )}
                       {s.feedback && <p className="feedback">{s.feedback}</p>}
                     </div>
                   </div>
@@ -239,12 +280,20 @@ export default function Home() {
           </div>
 
           {finalScore != null && (
-            <div className="final-score">
-              <span className="final-label">{t("finalScore")}</span>
-              <span className="final-num">{finalScore}%</span>
-            </div>
-          )}
+            <>
+              <div className="final-score">
+                <span className="final-label">{t("finalScore")}</span>
+                <span className="final-num">{finalScore}%</span>
+              </div>
 
+            {/* 低分时显示防幻觉说明 ↓ */}
+            {finalScore < 60 && (
+              <div className="mt-3 p-3 rounded-md text-xs bg-amber-400/5 border border-amber-400/20 text-muted leading-relaxed">
+                {t("lowMatchHint")}
+              </div>
+            )}
+            </>
+          )}
           {result && (
             <div className="result">
               <div className="result-head">
@@ -257,6 +306,17 @@ export default function Home() {
                   {copied ? t("copied") : t("copy")}
                 </button>
               </div>
+              {/* ↓ 新增:AI 改进摘要 ↓ */}
+              <div className="mb-4 p-3 rounded-md text-xs border border-accent-dim bg-accent/5 text-text leading-relaxed">
+                <p>{t("improvementSummary")}</p>
+                <p className="mt-2 text-muted">
+                  {t("improvementDetails")}:
+                <span className="ml-1 text-accent">
+                  {tArray( "improvementMeasures").join(" · ")}
+                </span>
+                </p>
+               </div>
+    
               <div className="compare">
                 <div className="compare-col">
                   <span className="compare-tag">{t("originalResume")}</span>

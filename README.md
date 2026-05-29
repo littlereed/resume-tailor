@@ -17,6 +17,7 @@ The application analyzes resumes against job descriptions, optimizes wording und
 
 ## 🧠 Workflow
 
+```
 Extract Keywords
        ↓
 Rewrite Resume
@@ -35,6 +36,7 @@ Retry      Verify
  └─────┬─────┘
        ↓
       Done
+```
 
 
 ## 🚀 Tech Stack

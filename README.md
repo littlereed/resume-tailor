@@ -49,10 +49,11 @@ Done
 ## 🔧 Technical Highlights
 
 * LangGraph self-reflection workflow with conditional retry
+* Graceful degradation when API quota is exhausted
+* Two-layer anti-hallucination defense (prompt constraints + verification node) to prevent AI from fabricating resume experiences.
 * Tool-based architecture for keyword extraction and coverage calculation
 * Type-safe LLM responses using Zod and Structured Output
 * Real-time agent visualization via Server-Sent Events (SSE)
-* Graceful degradation when API quota is exhausted
 * Multilingual support (English / Japanese / Chinese)
 
 ## 👨‍💻 Personal Contributions

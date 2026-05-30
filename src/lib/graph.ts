@@ -19,6 +19,7 @@ const TailorState = Annotation.Root({
   feedbackCode: Annotation<string>({ reducer: (_, b) => b, default: () => "" }),
   rounds: Annotation<number>({ reducer: (_, b) => b, default: () => 0 }),
   degraded: Annotation<boolean>({ reducer: (_, b) => b, default: () => false }),
+  prevScore: Annotation<number>({ reducer: (_, b) => b, default: () => 0 }),
   hallucinationFound: Annotation<boolean>({
     reducer: (_, b) => b,
     default: () => false,
@@ -168,7 +169,7 @@ async function scoreNode(state: State) {
          【简历】${state.optimized}`
       )
     )
-    return { score: result.score, feedback: result.feedback, matchRate, missing }
+    return { score: result.score, feedback: result.feedback, matchRate, missing, prevScore: state.score, }
   } catch (e) {
     if (isQuotaError(e)) {
       return {
@@ -218,11 +219,14 @@ function shouldContinue(
 ): "rewrite" | "verify" | typeof END {
   // 降级了直接结束(省配额)
   if (state.degraded) return END
+  const scoreImproved = state.score > state.prevScore + 5 
+  const shouldRetry = 
+    state.score < 85 && 
+    state.rounds < 3 && 
+    (state.rounds <= 1 || scoreImproved)
 
-  // 分数不达标且未到上限 → 继续改写
-  if (state.score < 85 && state.rounds < 3) return "rewrite"
+  if (shouldRetry) return "rewrite"
 
-  // 分数达标 → 看是否启用第二重验证
   return ENABLE_VERIFY ? "verify" : END
 }
 

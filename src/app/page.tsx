@@ -20,7 +20,12 @@ type Step = {
   hallucinationDetail?: string
 }
 
-
+function checkNoProgress(steps: Step[]): boolean {
+  const scores = steps
+    .filter((s) => s.score != null)
+    .map((s) => s.score!)
+  return scores.length >= 2 && scores[scores.length - 1] <= scores[0] + 5
+}
 export default function Home() {
   
   const [resume, setResume] = useState("")
@@ -42,6 +47,11 @@ export default function Home() {
   fitness: t("scoreNode"),
   verify: t("verifyNode"),
   }
+  const hint = checkNoProgress(steps)
+  ? t("noImprovementNotice")
+  : finalScore != null && finalScore < 60
+  ? t("lowMatchHint")
+  : null
 
   async function handleCopy() {
     await navigator.clipboard.writeText(result)
@@ -286,12 +296,11 @@ export default function Home() {
                 <span className="final-num">{finalScore}%</span>
               </div>
 
-            {/* 低分时显示防幻觉说明 ↓ */}
-            {finalScore < 60 && (
+            {hint && (
               <div className="mt-3 p-3 rounded-md text-xs bg-amber-400/5 border border-amber-400/20 text-muted leading-relaxed">
-                {t("lowMatchHint")}
+                {hint}
               </div>
-            )}
+              )}
             </>
           )}
           {result && (

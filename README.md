@@ -58,7 +58,7 @@ Done
 
 ### Agent Execution Flow
 
-![Agent Flow](./screenshots/agent-flow.png)
+![Agent Flow](./screenshots/agent-flow-new.png)
 
 ## Project Status
 

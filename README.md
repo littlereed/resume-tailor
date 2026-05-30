@@ -54,7 +54,7 @@ Done
 
 ### Optimization Result
 
-![Optimization Result](./screenshots/optimization-result.png)
+![Optimization Result](./screenshots/optimization-result-new.png)
 
 ### Agent Execution Flow
 

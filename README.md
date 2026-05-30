@@ -75,15 +75,15 @@ Main contributions include:
 
 ### Resume Input
 
-![Resume Input](./screenshots/resume-input1.png)
+![Resume Input](./screenshots/resume-input.png)
 
 ### Optimization Result
 
-![Optimization Result](./screenshots/optimization-result1.png)
+![Optimization Result](./screenshots/optimization-result.png)
 
 ### Agent Execution Flow
 
-![Agent Flow](./screenshots/agent-flow1.png)
+![Agent Flow](./screenshots/agent-flow.png)
 
 ## Project Status
 

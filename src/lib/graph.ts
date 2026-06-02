@@ -196,9 +196,10 @@ async function verifyNode(state: State) {
       hallucinationDetail: result.fabricatedItems.join("、"),
     }
   } catch (e) {
-    if (isQuotaError(e)) {
-      // 配额满,跳过验证,不阻断主流程
-      return { hallucinationFound: false, hallucinationDetail: "" }
+    if(isQuotaError(e)) {
+      console.warn("[verifyNode] 配额限制，跳过验证")
+    } else {
+      console.warn("[verifyNode] 验证节点异常：", e)
     }
     return { hallucinationFound: false, hallucinationDetail: "" }
   }

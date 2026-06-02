@@ -20,18 +20,9 @@ const TailorState = Annotation.Root({
   rounds: Annotation<number>({ reducer: (_, b) => b, default: () => 0 }),
   degraded: Annotation<boolean>({ reducer: (_, b) => b, default: () => false }),
   prevScore: Annotation<number>({ reducer: (_, b) => b, default: () => 0 }),
-  hallucinationFound: Annotation<boolean>({
-    reducer: (_, b) => b,
-    default: () => false,
-  }),
-  hallucinationDetail: Annotation<string>({
-    reducer: (_, b) => b,
-    default: () => "",
-  }),
-  missing: Annotation<string[]>({
-    reducer: (_, b) => b,
-    default: () => [],
-  }),
+  hallucinationFound: Annotation<boolean>({ reducer: (_, b) => b, default: () => false }),
+  hallucinationDetail: Annotation<string>({ reducer: (_, b) => b, default: () => "" }),
+  missing: Annotation<string[]>({ reducer: (_, b) => b, default: () => [] }),
 })
 
 type State = typeof TailorState.State

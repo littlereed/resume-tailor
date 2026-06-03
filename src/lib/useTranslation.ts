@@ -20,9 +20,7 @@ export function useTranslation(locale: Locale) {
     }
   }, [locale])
 
-  useEffect(() => {
-    loadMessages(locale).then(setMessages)
-  }, [locale])
+  
 
   const t = (key: string, vars?: Record<string, string | number>): string => {
     const text = messages?.[key]
